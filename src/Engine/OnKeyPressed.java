@@ -4,7 +4,6 @@ import Main.Game;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 public class OnKeyPressed extends Game implements KeyEventDispatcher {
     private static boolean dialogOpen = false;
@@ -16,7 +15,6 @@ public class OnKeyPressed extends Game implements KeyEventDispatcher {
 
         switch(e.getKeyCode()){
             case KeyEvent.VK_ENTER: next(); break;
-            case KeyEvent.VK_ESCAPE: menu(); break;
         }
 
         return false;
@@ -34,9 +32,5 @@ public class OnKeyPressed extends Game implements KeyEventDispatcher {
                 Engine.iniziaPartita();
                 break;
         }
-    }
-
-    static void menu(){
-
     }
 }

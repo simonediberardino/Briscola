@@ -2,6 +2,7 @@ package Entity;
 
 import Main.Game;
 import GUI.*;
+import Engine.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +66,7 @@ public class Giocatore extends Game {
         final Integer daMostrare = 5;
 
         ArrayList<Carta> carte = prese;
-        Collections.sort(carte, ordinaCarte);
+        Collections.sort(carte, Engine.ordinaCarte);
         Collections.reverse(carte);
 
         if(carte.size() <= daMostrare)
@@ -74,8 +75,6 @@ public class Giocatore extends Game {
         for(int i = 0; i < daMostrare && i < carte.size(); i++)
             this.pTavolo.add(carte.get(i));
     }
-
-    public static Comparator<Carta> ordinaCarte = Comparator.comparingInt(c -> c.getValore());
 
     public void svuotaMazzo(){
         this.carte.clear();

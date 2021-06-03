@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Engine extends Game implements ActionListener {
     public static void inizializza() throws InterruptedException {
@@ -44,7 +45,7 @@ public class Engine extends Game implements ActionListener {
         mazzo.clear();
 
         for(String seme : semi) {
-            for (Integer i = 1; i <= 10; i++)
+            for(Integer i = 1; i <= 10; i++)
                 mazzo.add(new Carta(i, seme));
         }
 
@@ -74,7 +75,7 @@ public class Engine extends Game implements ActionListener {
         anteprimaCarte.setVisible(true);
     }
 
-    static void distribuisciCarte() {
+    static void distribuisciCarte(){
         for(Giocatore p : giocatori){
             p.svuotaMazzo();
 
@@ -91,7 +92,7 @@ public class Engine extends Game implements ActionListener {
         p.toccaA();
     }
 
-    static void terminaManche(Giocatore vincitore) throws IOException, InterruptedException {
+    static void terminaManche(Giocatore vincitore) throws InterruptedException {
         Game.canPlay = false;
 
         Thread.sleep(1750);
@@ -190,6 +191,7 @@ public class Engine extends Game implements ActionListener {
         for(Giocatore p : giocatori)
             if(p != current)
                 return p;
+
         return null;
     }
 
@@ -204,6 +206,8 @@ public class Engine extends Game implements ActionListener {
         return null;
     }
 
+    public static Comparator<Carta> ordinaCarte = Comparator.comparingInt(c -> c.getValore());
+
     static Integer getCarteATerra(){
         return pGiocoUser.getComponentCount() + pGiocoCPU.getComponentCount();
     }
@@ -211,6 +215,7 @@ public class Engine extends Game implements ActionListener {
     static boolean isTerminata(){
         return getCarteATerra() == 0;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Carta carta = (Carta) e.getSource();
@@ -227,23 +232,19 @@ public class Engine extends Game implements ActionListener {
             ioException.printStackTrace();
         }
 
-        Giocatore vincente = null;
-
-        vincente = doLogic(carta, getOtherCarta(carta));
+        Giocatore vincente = doLogic(carta, getOtherCarta(carta));
 
         if(vincente == null) {
             prossimoTurno(getOtherPlayer(giocante));
         }else{
             Giocatore finalVincente = vincente;
-            Thread thread = new Thread(() -> {
+            new Thread(() -> {
                 try{
                     terminaManche(finalVincente);
-                }catch (IOException | InterruptedException err) {
-                    err.printStackTrace();
+                }catch(InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
                 }
-            });
-
-            thread.start();
+            }).start();
         }
     }
 

@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class Background extends JPanel {
+public class Background extends JPanel{
     private Image img;
 
     public Background(String img) {
@@ -13,11 +13,11 @@ public class Background extends JPanel {
     public Background(Image img) {
         this.img = img;
         Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-        setSize(size);
-        setLayout(null);
+        this.setPreferredSize(size);
+        this.setMinimumSize(size);
+        this.setMaximumSize(size);
+        this.setSize(size);
+        this.setLayout(null);
     }
 
     public void paintComponent(Graphics g) {

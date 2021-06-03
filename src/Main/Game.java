@@ -6,7 +6,6 @@ import GUI.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.*;
 
 public class Game {
@@ -24,7 +23,7 @@ public class Game {
 
     protected static JFrame f;
     protected static JPanel p, pMain, pSouth, pGiocoC, pGiocoR, pGiocoL, pGiocoUser, pGiocoUserL, pGiocoUserR, pGiocoCPU, pGiocoCPUL, pGiocoCPUR;
-    protected static AnteprimaCarte anteprimaCarte = new AnteprimaCarte();
+    protected static CartaVuota anteprimaCarte = new CartaVuota();
     protected static Scoreboard scoreboard;
 
     public static void main(String args[]) {

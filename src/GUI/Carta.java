@@ -80,6 +80,22 @@ public class Carta extends JButton {
         }
     }
 
+    public boolean supera(Carta daSuperare){
+        if(this.getSeme() == daSuperare.getSeme()){
+            if(this.getValore() > daSuperare.getValore()){
+                return true;
+            }else if(this.getValore() == daSuperare.getValore()){
+                if(this.getNumero() > daSuperare.getNumero()){
+                    return true;
+                }
+            }
+        }else if(this.isBriscola()){
+            return true;
+        }
+
+        return false;
+    }
+
     public boolean isBriscola(){
         return this.getSeme() == Game.briscola.getSeme();
     }

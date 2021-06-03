@@ -1,7 +1,5 @@
 package GUI;
 
-import java.io.IOException;
-
 public class CartaVuota extends Carta {
     public CartaVuota() {
         super(false);
