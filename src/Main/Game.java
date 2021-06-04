@@ -14,6 +14,7 @@ public class Game {
     public static boolean carteScoperte = false;
     public static Integer scoreLimit = 3;
     public static Carta briscola;
+    public static final int maxPunti = 120;
 
     protected static Giocatore[] giocatori = new Giocatore[nGiocatori];
     protected static ArrayList<Carta> mazzo = new ArrayList<>();

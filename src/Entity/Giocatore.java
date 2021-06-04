@@ -39,6 +39,8 @@ public class Giocatore extends Game {
     // Label della scoreboard appartenente al giocatore;
     protected JLabel label;
 
+    protected Integer punteggio = 0;
+
     public Giocatore(String nome, JLabel label){
         this(nome, label, false);
         this.pTavolo = pGiocoUser;
@@ -62,6 +64,14 @@ public class Giocatore extends Game {
         return score;
     }
 
+    public Integer getPunteggio() {
+        return punteggio;
+    }
+
+    public void setPunteggio(Integer punteggio) {
+        this.punteggio = punteggio;
+    }
+
     public void mostraMazzo(){
         final Integer daMostrare = 5;
 
@@ -79,11 +89,13 @@ public class Giocatore extends Game {
     public void svuotaMazzo(){
         this.carte.clear();
         this.prese.clear();
+        this.punteggio = 0;
         this.mazzo = null;
     }
 
     public void azzeraPunteggio(){
         this.score = 0;
+        this.punteggio = 0;
         this.aggiornaLabel();
     }
 
@@ -130,10 +142,13 @@ public class Giocatore extends Game {
         }
 
         for(Component c : pGiocoC.getComponents()) {
-            prese.add((Carta) c);
+            Carta carta = (Carta) c;
+            prese.add(carta);
+            punteggio += carta.getValore();
             ((Carta) c).setBorderPainted(false);
-        }
 
+        }
+        
         ultimoVincitore = this;
         GUI.aggiornaFrame();
     }
@@ -146,15 +161,6 @@ public class Giocatore extends Game {
         this.pTavolo.remove(carta);
         GUI.pGiocoC.add(carta);
         GUI.aggiornaFrame();
-    }
-
-    public Integer conta(){
-        Integer punteggio = 0;
-
-        for(Carta carta : prese)
-            punteggio += carta.getValore();
-
-        return punteggio;
     }
 
     public void toccaA(){}

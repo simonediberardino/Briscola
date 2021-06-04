@@ -137,20 +137,20 @@ public class Engine extends Game implements ActionListener {
 
     static void terminaPartita(Giocatore vincitore){
         Game.endEvent = 1;
-        pGiocoC.add(new Messaggio(vincitore.getNome() + " ha vinto! ("+vincitore.conta()+")", "Premi INVIO per un'altra partita!"));
+        pGiocoC.add(new Messaggio(vincitore.getNome() + " ha vinto! ("+vincitore.getPunteggio()+")", "Premi INVIO per un'altra partita!"));
         GUI.aggiornaFrame();
     }
 
     static void terminaRound(Giocatore vincitore){
         Game.endEvent = 0;
-        String titolo = vincitore == null ? "Pareggio!" : vincitore.getNome() + " ha vinto il round (" + vincitore.conta() + ")!";
+        String titolo = vincitore == null ? "Pareggio!" : vincitore.getNome() + " ha vinto il round (" + vincitore.getPunteggio() + ")!";
         pGiocoC.add(new Messaggio(titolo, "Premi INVIO per il prossimo round!"));
         GUI.aggiornaFrame();
     }
 
     static Giocatore trovaVincitore(){
-        Integer score_1 = giocatori[0].conta();
-        Integer score_2 = giocatori[1].conta();
+        Integer score_1 = giocatori[0].getPunteggio();
+        Integer score_2 = giocatori[1].getPunteggio();
 
         if(score_1 > score_2)
             return giocatori[0];

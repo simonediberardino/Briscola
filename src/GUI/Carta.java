@@ -65,8 +65,8 @@ public class Carta extends JButton {
         return portatore;
     }
 
-    public void setPortatore(Giocatore portatore){
-        this.portatore = portatore;
+    public void setPortatore(Giocatore g){
+        this.portatore = g;
     }
 
     private Integer calcolaValore(Integer numero){
@@ -105,7 +105,7 @@ public class Carta extends JButton {
     }
 
     public void nascondi() {
-        if(Game.carteScoperte && this.getPortatore() != null)
+        if(Game.carteScoperte && this.portatore != null)
             return;
 
         String imagePath = "/resources/vuoto.png";
